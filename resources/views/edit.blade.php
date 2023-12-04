@@ -34,7 +34,7 @@
 
     <div class="contaner">
         <div class="row p-2">
-            <h4><a href="practice3.php">Show All Data</a></h4>
+            <h4><a href="{{route('checklist.all') }}">Show All Data</a></h4>
             <!-- All data Table -->
             <div class="col-md-6 offset-3">
                 <h1>Show Data</h1>

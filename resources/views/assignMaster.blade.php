@@ -18,28 +18,33 @@
     <div class="contaner">
         <div class="row p-2">
             <div class="col-md-6">
-                <h1>ADD DATA</h1>
+                <h1>ADD Assign-Master</h1>
 
                 <!-- Add Form -->
                 <form id="myForm" action="" method="POST" class="shadow p-2 bg-info">
-                    <label for="description">Description:</label>
-                    <input type="text" id="description" required>
-                    <!-- <textarea name="" id="description" cols="3" rows="3"></textarea> -->
+                    {{-- <label for="departmentID">DepartmentID:</label>
+                    <input type="text" id="departmentID" required> --}}
 
-                    <label for="remark">Remerk:</label>
-                    <input type="text" id="remark" required>
+                    <select id="departmentID">
+
+                        <option selected disabled>select Department ID</option>
+                            @foreach ($Alldepartment as $department)
+                            <option value="{{ $department['id'] }}">{{ $department['depertmentName'] }}</option>
+                            @endforeach
+                        
+                        
+                      </select>
 
                     <button type="button" id="submitBtn" class="btn btn-sm btn-success">ADD</button>
                 </form><br><br>
 
                 <!-- Table form -->
-                <form action="{{ route('checklist.store') }}" method="POST" class="shadow p-2">
+                <form action="{{ route('assignMaster.store') }}" method="POST" class="shadow p-2">
                     @csrf
                     <table id="dataTable" class="table">
                         <thead>
                             <tr>
-                                <th>Description</th>
-                                <th>Remark</th>
+                                <th>DepartmentID</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -62,9 +67,9 @@
 
             <!-- Show data Table -->
 
-            @php
-                // dd($Alldatas)
-            @endphp
+            {{-- @php
+                dd($Alldatas)
+            @endphp --}}
 
 
 
@@ -76,18 +81,17 @@
                 <table class="table table-striped shadow p-2">
                     <tr>
                         <th>SL</th>
-                        <th>Description</th>
-                        <th>Remark</th>
+                        <th>Department Name</th>
+                      
                     </tr>
 
-                    
-
+                   
                     {{--  show Data --}}
-                    @foreach ($Alldatas as $key => $date)
+                    @foreach ($Alldatas as $key => $data)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $date->description }}</td>
-                            <td>{{ $date->remark }}</td>
+                            <td>{{ $data->departmentID }}</td>
+                           
                         </tr>
                     @endforeach
 
@@ -110,25 +114,22 @@
     <script>
         $(document).ready(function() {
             $("#submitBtn").on("click", function() {
-                var description = $("#description").val();
+                var departmentID = $("#departmentID").val();
 
-                var remark = $("#remark").val();
+                // var remark = $("#remark").val();
 
 
 
-                if (description != "") {
+                if (departmentID != "") {
                     var newRow = $("<tr>");
                     newRow.append(
-                        "<td> <input type='text' style='border:none' id='name'   name ='description[]' value='" +
-                        description + "'>   </td>"); //value='" + description + "'
-                    newRow.append(
-                        "<td> <input type='text' style='border:none' id='name'  name ='remark[]' value='" +
-                        remark + "'>   </td>");
-
+                        "<td> <input type='text' style='border:none' id='name'   name ='departmentID[]' value='" +
+                            departmentID + "'>   </td>"); //value='" + description + "'
+                  
                     $("#dataTable tbody").append(newRow);
 
-                    $("#description").val("");
-                    $("#remark").val("");
+                    $("#departmentID").val("");
+                    
                 }
 
             });

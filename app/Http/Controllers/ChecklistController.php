@@ -90,40 +90,4 @@ class ChecklistController extends Controller
 
 
 
-    
-
-    // /**
-    //  * Update the specified resource in storage.
-    //  */
-    // public function update(Request $request, string $id)
-    // {
-
-    //     //  $categories = Category::find($id);
-
-    //     if ($image = $request->file('brand_image')) {
-    //         $customImageName = uniqid() . '.' . $image->getClientOriginalExtension();
-    //         @unlink(public_path('backend/upload/brand/'.Brand::find($id)->brand_image));
-    //         $image->move(public_path('backend/upload/brand/'), $customImageName);
-    //     }else{
-    //         $customImageName = Brand::find($id)->brand_image;
-    //     }
-
-    //     // Query builder or DB builder
-    //     DB::table('brands')->where('id',$id)->update([
-    //         "brand_name" => $request->brand_name,
-    //         "brand_slug" => strtolower(str_replace(' ', '-', $request->brand_name)),
-    //         "brand_image" => $customImageName
-    //     ]);
-
-    //     $notification = array(
-    //         'message' => "brand Updated Successfully",
-    //         'alert-type' => "success",
-    //     );
-
-    //     return redirect()->route('brand.all')->with($notification);
-    // }
-
-
-
-
 }
